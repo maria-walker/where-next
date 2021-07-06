@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 60%;
+  padding-left: 60px;
+}
+li {
+  list-style: none;
+  text-align: left;
+}
+
+input {
+  width: 105px;
+  height: 1.3em;
+  border-radius: 7px;
+
+  font-size: 0.9em;
+  margin: 2px;
+  padding: 6px;
+}
+
+:placeholder-shown {
+  font-style: italic;
+  font-size: 0.8em;
+  margin: 2px;
+  padding: 6px;
+}
+
+label {
+  font-size: 1.35em;
+  color: rgb(1, 44, 80);
+  display: inline-block;
+  width: 55%;
+  text-align: left;
+}
+
+#submit {
+  background-color: rgb(231, 182, 89);
+  width: 150px;
+  margin: 10px auto;
+
+  font-size: 1.2em;
+  font-weight: bold;
+
+  border: solid black 3px;
+  border-radius: 25px;
+}
+#submit:hover {
+  transform: translateY(3px);
+  background-color: rgb(171, 178, 180);
+}
+
+#reset {
+  background-color: rgb(231, 182, 89);
+  width: 150px;
+  margin: 10px auto;
+
+  font-size: 1.2em;
+  font-weight: bold;
+
+  border: solid black 3px;
+  border-radius: 25px;
+}
+
+#reset:hover {
+  transform: translateY(3px);
+  background-color: rgb(171, 178, 180);
+}
+
+.leaflet-container {
+  margin: auto;
+  width: 50%;
+  height: 60vh;
+}
