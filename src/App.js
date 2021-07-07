@@ -6,12 +6,17 @@ import { useState } from "react";
 
 function App() {
   const [postcode, setPostcode] = useState("M1");
+  const [policeDataTicked, setPoliceDataTicked] = useState(false);
 
   return (
     <div className="App">
       <Header />
-      <Input setPostcode={setPostcode} />
-      <Map postcode={postcode} />
+      <Input
+        setPostcode={setPostcode}
+        policeDataTicked={policeDataTicked}
+        setPoliceDataTicked={setPoliceDataTicked}
+      />
+      <Map postcode={postcode} policeDataTicked={policeDataTicked} />
     </div>
   );
 }

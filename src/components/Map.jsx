@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useState } from "react";
 import { useEffect } from "react";
 import * as postcodeData from "../data/outer-postcodes.json";
+import MarkerComponent from "./Marker";
 
 //import { Icon } from "leaflet";
 
@@ -11,7 +12,7 @@ import * as postcodeData from "../data/outer-postcodes.json";
 //   iconSize: [25, 25],
 // });
 
-const Map = ({ postcode }) => {
+const Map = ({ postcode, policeDataTicked }) => {
   const [crimes, setCrimes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [latlng, setLatlng] = useState([53.47734, -2.23508]);
@@ -24,7 +25,7 @@ const Map = ({ postcode }) => {
 
   useEffect(() => {
     allOuterPostcodes.forEach((outerPostcode) => {
-      if (outerPostcode.postcode === postcode) {
+      if (outerPostcode.postcode === postcode.toUpperCase()) {
         lat = outerPostcode.latitude;
         lng = outerPostcode.longitude;
         coords = [lat, lng];
@@ -34,7 +35,7 @@ const Map = ({ postcode }) => {
       }
     });
 
-    const url = `https://data.police.uk/api/crimes-street/all-crime?lat=${lat}&lng=${lng}&date=2019-12`;
+    const url = `https://data.police.uk/api/crimes-street/all-crime?lat=${lat}&lng=${lng}`;
 
     fetch(url)
       .then((response) => response.json())
@@ -49,7 +50,7 @@ const Map = ({ postcode }) => {
   console.log(latlng);
   return (
     <MapContainer
-      key={JSON.stringify(latlng)}
+      key={JSON.stringify(latlng, policeDataTicked)}
       className="leaflet-container "
       center={latlng}
       zoom={14}
@@ -59,21 +60,7 @@ const Map = ({ postcode }) => {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
 
-      {crimes.map((crime) => {
-        return (
-          <Marker
-            key={crime.id}
-            position={[crime.location.latitude, crime.location.longitude]}
-          >
-            <Popup>
-              <div>
-                <h2>{crime.category}</h2>
-                <p>{crime.location.street.name}</p>
-              </div>
-            </Popup>
-          </Marker>
-        );
-      })}
+      <MarkerComponent policeDataTicked={policeDataTicked} crimes={crimes} />
     </MapContainer>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-const Input = ({ setPostcode }) => {
+const Input = ({ setPostcode, policeDataTicked, setPoliceDataTicked }) => {
   const [newPostcode, setNewPostcode] = useState("");
 
   return (
@@ -28,7 +28,16 @@ const Input = ({ setPostcode }) => {
 
           <li>
             <label htmlFor="crimes">See recent crimes in the area</label>
-            <input type="checkbox" id="crimes" value="crimes"></input>
+            <input
+              type="checkbox"
+              id="crimes"
+              value="crimes"
+              onChange={(event) => {
+                // event.preventDefault();
+                setPoliceDataTicked(!policeDataTicked);
+                console.log("ticked!");
+              }}
+            ></input>
           </li>
 
           <li>
